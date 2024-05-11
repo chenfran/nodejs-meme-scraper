@@ -7,11 +7,15 @@ import fetch from 'node-fetch';
 
 // # ACTUAL CODE:
 // create folder called "memes"
-fs.mkdir('memes', (err) => {
-  if (err) {
-    return console.error(err);
+const folderName = 'memes';
+
+try {
+  if (!fs.existsSync(folderName)) {
+    fs.mkdirSync(folderName);
   }
-});
+} catch (err) {
+  console.error(err);
+}
 
 // fetch plain text or HTML
 const response = await fetch(
@@ -34,5 +38,6 @@ function downloadImage(url, filepath) {
 for (let a = 0; a < 10; a++) {
   const number = a + 1;
   const rename = `${number.toString().padStart(2, '0')}.jpg`; // padStart() helps to pad a number with leading zeros
-  downloadImage(body.match(/(?<= src=").+?jpg/g)[a], `memes/${rename}`);
+  console.log(body.match(/(?<= src=").+?300/g)[a]);
+  downloadImage(body.match(/(?<= src=").+?300/g)[a], `memes/${rename}`);
 }
