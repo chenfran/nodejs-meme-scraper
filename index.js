@@ -6,6 +6,13 @@ import client from 'node:https';
 import fetch from 'node-fetch';
 
 // # ACTUAL CODE:
+// create folder called "memes"
+fs.mkdir('memes', (err) => {
+  if (err) {
+    return console.error(err);
+  }
+});
+
 // fetch plain text or HTML
 const response = await fetch(
   'https://memegen-link-examples-upleveled.netlify.app/',
