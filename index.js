@@ -30,14 +30,20 @@ function downloadImage(url, filepath) {
   });
 }
 
-// extract all image URLs from the html text but I used it without any variables only with .match - it is just very confusing so I will put this documentation here:
-// code with extra variable:  const regEx = /(?<= src=").+?jpg/g;
-// code with extra variable: const finalImage = [...body.match(regEx)];
-
 // Loop to download first ten images and rename them
 for (let a = 0; a < 10; a++) {
   const number = a + 1;
   const rename = `${number.toString().padStart(2, '0')}.jpg`; // padStart() helps to pad a number with leading zeros
-  console.log(body.match(/(?<= src=").+?300/g)[a]);
-  downloadImage(body.match(/(?<= src=").+?300/g)[a], `memes/${rename}`);
+  downloadImage(body.match(/(?<= src=").+?300/g)[a], `memes/${rename}`); // read ## MATCH-METHOD to get to know how I got "/(?<= src=").+?300/g"
 }
+
+/*
+## MATCH-METHOD
+extract all image URLs from the html text but I used it without any variables only with .match - it is just very confusing so I will put this documentation here:
+code with extra variables:
+
+const regEx = /(?<= src=").+?jpg/g;
+const finalImage = [...body.match(regEx)];
+
+Instead of body.match(/(?<= src=").+?300/g)[a] I could also use finalImage[a].
+*/
