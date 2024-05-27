@@ -22,6 +22,7 @@ const response = await fetch(
   'https://memegen-link-examples-upleveled.netlify.app/',
 );
 const body = await response.text();
+console.log('If it is true, fetching was successful: ' + response.ok);
 
 // function: download image (url) and save it to a specific directory (filepath)
 function downloadImage(url, filepath) {
@@ -36,14 +37,3 @@ for (let a = 0; a < 10; a++) {
   const rename = `${number.toString().padStart(2, '0')}.jpg`; // padStart() helps to pad a number with leading zeros
   downloadImage(body.match(/(?<= src=").+?300/g)[a], `memes/${rename}`); // read ## MATCH-METHOD to get to know how I got "/(?<= src=").+?300/g"
 }
-
-/*
-## MATCH-METHOD
-extract all image URLs from the html text but I used it without any variables only with .match - it is just very confusing so I will put this documentation here:
-code with extra variables:
-
-const regEx = /(?<= src=").+?jpg/g;
-const finalImage = [...body.match(regEx)];
-
-Instead of body.match(/(?<= src=").+?300/g)[a] I could also use finalImage[a].
-*/

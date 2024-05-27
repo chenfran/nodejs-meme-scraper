@@ -12,6 +12,16 @@ Make sure that the meme images are "ignored" in Git - they should not show up in
 
 The program should be able to run multiple times without throwing an error.
 
+## An explanation about the MATCH-METHOD
+
+extract all image URLs from the html text but I used it without any variables only with .match - it is just very confusing so I will put this documentation here:
+code with extra variables:
+
+const regEx = /(?<= src=").+?jpg/g;
+const finalImage = [...body.match(regEx)];
+
+Instead of body.match(/(?<= src=").+?300/g)[a] I could also use finalImage[a].
+
 When you believe you are done, set up a test:
 
 1. Create a directory called `.github` (there is a dot at the start)
